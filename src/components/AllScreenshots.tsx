@@ -1,7 +1,6 @@
 import { ScreenshotWithAnnotations } from './screenshot-with-annotations';
 import { screenshotData } from '../data/screenshot-annotations';
 
-// Use public folder paths instead of figma:asset for Vercel deployment
 const screenshots = {
   homeScreenshot: '/screenshots/home-screenshot.png',
   sideQuestsScreenshot: '/screenshots/side-quests-screenshot.png',
