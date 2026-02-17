@@ -1,7 +1,7 @@
-import { ScreenshotWithAnnotations } from './screenshot-with-annotations';
-import { screenshotData } from '../data/screenshot-annotations';
+import { ScreenshotWithAnnotations } from './ScreenshotWithAnnotations'
+import { screenshotData } from '../data/annotations'
 
-const screenshots = {
+const screenshots: Record<string, string> = {
   homeScreenshot: '/screenshots/home-screenshot.png',
   sideQuestsScreenshot: '/screenshots/side-quests-screenshot.png',
   groupsScreenshot: '/screenshots/groups-screenshot.png',
@@ -13,21 +13,39 @@ const screenshots = {
   editActivityBikeScreenshot: '/screenshots/edit-activity-bike-screenshot.png',
   manageActivitiesScreenshot: '/screenshots/manage-activities-screenshot.png',
   profileScreenshot: '/screenshots/profile-screenshot.png',
-  leaderboardScreenshot: '/screenshots/leaderboard-screenshot.png'
-};
+  leaderboardScreenshot: '/screenshots/leaderboard-screenshot.png',
+}
 
 export function AllScreenshots() {
   return (
-    <div className="space-y-16">
-      {screenshotData.map((data, index) => (
-        <ScreenshotWithAnnotations
-          key={index}
-          title={data.title}
-          screenshotUrl={screenshots[data.screenshot as keyof typeof screenshots]}
-          deviceType="mobile"
-          annotations={data.annotations}
-        />
-      ))}
+    <div className="flex flex-col gap-16">
+      {screenshotData.map((data, index) => {
+        const screenshotUrl = screenshots[data.screenshot]
+
+        // Fail loudly in the UI if a key doesn't match, so you notice immediately.
+        if (!screenshotUrl) {
+          return (
+            <div key={`${data.title}-${index}`} className="p-4 border rounded">
+              <div className="font-semibold">Missing screenshot mapping</div>
+              <div className="text-sm opacity-70">
+                screenshot key: <code>{data.screenshot}</code>
+              </div>
+              <div className="text-sm opacity-70">
+                title: <code>{data.title}</code>
+              </div>
+            </div>
+          )
+        }
+
+        return (
+          <ScreenshotWithAnnotations
+            key={`${data.title}-${index}`}
+            title={data.title}
+            screenshotUrl={screenshotUrl}
+            annotations={data.annotations}
+          />
+        )
+      })}
     </div>
-  );
+  )
 }
