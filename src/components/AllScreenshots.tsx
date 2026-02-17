@@ -1,19 +1,20 @@
-import { ScreenshotWithAnnotations } from './ScreenshotWithAnnotations';
-import { screenshotData } from '../data/annotations';
+import { ScreenshotWithAnnotations } from './screenshot-with-annotations';
+import { screenshotData } from '../data/screenshot-annotations';
 
+// Use public folder paths instead of figma:asset for Vercel deployment
 const screenshots = {
-  homeScreenshot: '/screenshots/home.png',
-  sideQuestsScreenshot: '/screenshots/side-quests.png',
-  groupsScreenshot: '/screenshots/groups.png',
-  pointsInputFitnessScreenshot: '/screenshots/points-input-fitness.png',
-  editActivityHealthScreenshot: '/screenshots/edit-activity-health.png',
-  pointsInputHealthScreenshot: '/screenshots/points-input-health.png',
-  newSideQuestScreenshot: '/screenshots/new-side-quest.png',
-  groupDetailsScreenshot: '/screenshots/group-details.png',
-  editActivityBikeScreenshot: '/screenshots/edit-activity-bike.png',
-  manageActivitiesScreenshot: '/screenshots/manage-activities.png',
-  profileScreenshot: '/screenshots/profile.png',
-  leaderboardScreenshot: '/screenshots/leaderboard.png'
+  homeScreenshot: '/screenshots/home-screenshot.png',
+  sideQuestsScreenshot: '/screenshots/side-quests-screenshot.png',
+  groupsScreenshot: '/screenshots/groups-screenshot.png',
+  pointsInputFitnessScreenshot: '/screenshots/points-input-fitness-screenshot.png',
+  editActivityHealthScreenshot: '/screenshots/edit-activity-health-screenshot.png',
+  pointsInputHealthScreenshot: '/screenshots/points-input-health-screenshot.png',
+  newSideQuestScreenshot: '/screenshots/new-side-quest-screenshot.png',
+  groupDetailsScreenshot: '/screenshots/group-details-screenshot.png',
+  editActivityBikeScreenshot: '/screenshots/edit-activity-bike-screenshot.png',
+  manageActivitiesScreenshot: '/screenshots/manage-activities-screenshot.png',
+  profileScreenshot: '/screenshots/profile-screenshot.png',
+  leaderboardScreenshot: '/screenshots/leaderboard-screenshot.png'
 };
 
 export function AllScreenshots() {
@@ -24,6 +25,7 @@ export function AllScreenshots() {
           key={index}
           title={data.title}
           screenshotUrl={screenshots[data.screenshot as keyof typeof screenshots]}
+          deviceType="mobile"
           annotations={data.annotations}
         />
       ))}
